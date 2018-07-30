@@ -23,6 +23,16 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.Box-Shadow {
+  -webkit-box-shadow: -12px 11px 48px 0px rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: -12px 11px 48px 0px rgba(0, 0, 0, 0.19);
+  box-shadow: -12px 11px 48px 0px rgba(0, 0, 0, 0.19);
 }

@@ -9,7 +9,6 @@ class Layout extends Component {
 
     await this.setState({ images: newProps.images, title: newProps.title });
     // console.log("did await", this.state);
-    this.changeHeroImage();
   }
 
   render() {

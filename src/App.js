@@ -5,6 +5,7 @@ import Layout from "./layout.js";
 import zupage from "zupage";
 import getUrls from "get-urls";
 import axios from "axios";
+import jsonp from "jsonp";
 
 class App extends Component {
   state = { post: { body: "", images: [], page: {} }, products: [] };
@@ -33,14 +34,35 @@ class App extends Component {
       listingID = etsyURLParts[4];
     }
     if (listingID) {
+      const client = axios.create({
+        timeout: 10000,
+        crossDomain: true
+      });
+
       console.log(listingID);
-      axios
-        .get(
-          "https://openapi.etsy.com/v2/listings/" +
-            listingID +
-            "/?api_key=94ydtmmscugbijpzkytncfh6&includes=Images"
-        )
-        .then(response => console.log(response));
+      console.log("called");
+      // client
+      //   .get(
+      //     "https://openapi.etsy.com/v2/listings/" +
+      //       listingID +
+      //       ".js/?api_key=94ydtmmscugbijpzkytncfh6&includes=Images"
+      //   )
+      //   .then(response => console.log(response));
+      jsonp(
+        "https://openapi.etsy.com/v2/listings/" +
+          listingID +
+          "/?callback=getData&api_key=94ydtmmscugbijpzkytncfh6&includes=Images",
+        null,
+        (err, data) => {
+          if (err) {
+            console.log("failed");
+            console.error(err.message);
+          } else {
+            console.log("success");
+            console.log(data);
+          }
+        }
+      );
     }
   };
 
